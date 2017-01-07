@@ -1,5 +1,5 @@
 ﻿Author: mister_zheng@sina.com
-1111
+1111 222
 2017.01.07 更新说明
 
 1、将 LoggerFactory.CreateLog() 改为 LoggerFactory.Create() 
