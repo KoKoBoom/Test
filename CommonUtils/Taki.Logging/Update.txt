@@ -1,0 +1,5 @@
+﻿更新记录：
+
+2016-12-12
+	更新文件Logger4Factory.cs
+	释放对 log4net.config 的读写，解决 log4net.config 一直被占用的问题。

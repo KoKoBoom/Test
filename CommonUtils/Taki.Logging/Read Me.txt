@@ -1,0 +1,150 @@
+﻿Author: mister_zheng@sina.com
+
+2017.01.07 更新说明
+
+1、将 LoggerFactory.CreateLog() 改为 LoggerFactory.Create() 
+   因为 LoggerFactory 本意就是 日志创建工厂，那么 Create 就已经能表达出创建 Logger 的意思了，CreateLog 语义上显得重复。（其实我只是想减少方法名长度，哈哈）
+
+2、对本类库做了大量的异常处理，LoggerFactory.Create() 在一般情况下不可能出现异常。
+   如果还不放心，建议使用C# 6.0 语法：?.
+   即 LoggerFactory.Create()?.Error("输出到日志的消息","错误的来源类");
+   绝对保证本条代码的安全性，绝不会出任何异常。
+
+   重要的事情说三遍：
+   推荐使用C# 6.0 语法  ?.
+   LoggerFactory.Create() ?. Error(exception);
+   LoggerFactory.Create() ?. Error("输出到日志的消息",exception);
+   LoggerFactory.Create() ?. Error("输出到日志的消息","错误的来源类");
+
+
+2016.12.22 更新说明
+
+	移除了 web.config 添加配置的需求，现在不添加配置也可以了，默认是使用log4net作为日志功能（前提是不修改类的空间名，即默认为“Taki.Logging.Logger4Factory”）
+
+	1、将 Taki.Logging 工程添加到项目，然后在需要的地方添加项目的引用
+	2、调用：
+		LoggerFactory.CreateLog().Info("打印","XXXXXXXXXXXX");
+		LoggerFactory.CreateLog().Debug("错误","XXXXXXXXXXXXXXXXXXXXX");
+
+2016.07.06 添加简单说明
+
+一、简单说明：
+	1、将 Taki.Logging 工程添加到项目，然后在需要的地方添加项目的引用
+	2、web.config 配置如下：
+		<appSettings>
+			<add key="DefaultLogConfig" value="Taki.Logging.Logger4Factory"/>
+		</appSettings>
+	3、调用：
+		LoggerFactory.CreateLog().Info("打印","XXXXXXXXXXXX");
+		LoggerFactory.CreateLog().Debug("错误","XXXXXXXXXXXXXXXXXXXXX");
+
+二、详细说明：
+
+1、ILogger.cs/ILoggerFactory.cs/LoggerFactory.cs 为项目内部定义的接口文件
+
+2、Logger4Factory.cs/Logger4Helper.cs 为自定义的实现第三方日志的 类
+
+也就是现在项目里面已经定义好了 上面 1 所列出来的接口   
+如果你想使用其他的第三方日志记录插件，只需继承于上面1的接口并提供实现即可。
+
+然后在 Global.asax 里面注入 第三方插件。
+而项目里面始终都是使用的 上面1 的 LoggerFactory 类来记录日志，
+以至于换掉任何上面2的文件都不会修改程序内部的日志记录的代码。
+
+1、首先 引用 你需要的第三方dll
+		这里以 log4net.dll 为例
+
+2、自定义两个类 继承并实现接口
+		a.Logger4Factory 继承于 ILoggerFactory 接口	并且实现 Create 方法
+		b.Logger4Helper 继承于 ILogger 接口 并且实现 内部定义的 方法
+
+3、在 Global.asax 或者 你的项目启动文件里面设置当前需要使用的日志类
+	3.1 可使用以下代码设置
+		log4net.Config.XmlConfigurator.Configure(System.IO.File.OpenRead(Server.MapPath("~/bin/Extend/log4net/log4net.config")));
+		LoggerFactory.SetCurrent(new Logger4Factory());
+		
+		（以下为 2016.07.06 添加）
+
+	3.2 也可以通过在 web.config 设置一下代码
+		<add key="DefaultLogConfig" value="你要使用的日志实现类的绝对限定路径(包括空间名)"/>
+		例如:
+		<add key="DefaultLogConfig" value="Taki.Logging.Logger4Factory"/>
+		日志实现类 还必须实现 继承接口(ILoggerFactory)的 DefaultFactory 方法
+
+		如果log4net.config在另一个工程里面，则需要对log4net.config文件点右键》属性》复制到输出目录 始终复制。
+4、程序里面使用
+        LoggerFactory.CreateLog().Info("记录日志");
+		LoggerFactory.CreateLog().Error("记录错误");
+
+5.log4net 的配置项
+
+<!--当configSections节点没有放在configuration节点下的第一个节点时，编译时不会报警告，但运行时不会记日志。
+  这是因为自定义的节点configSections这个必须放在第一个，这是app.config文件的语法规定；-->
+  <configSections>
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" />
+  </configSections>
+  <log4net>
+    <root>
+      <!--控制级别，由低到高: ALL|DEBUG|INFO|WARN|ERROR|FATAL|OFF-->
+      <!--比如定义级别为INFO，则INFO级别向下的级别，比如DEBUG日志将不会被记录-->
+      <!--如果没有定义LEVEL的值，则缺省为DEBUG-->
+      <level value="ERROR"/>
+      <appender-ref ref="RollingFileAppender"/>
+    </root>
+    <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
+      <!--日志文件名开头-->
+      <file value="c:\Log\TestLog4net.TXT"/>
+      <!--多线程时采用最小锁定-->
+      <lockingModel type="log4net.Appender.FileAppender+MinimalLock"/>
+      <!--日期的格式，每天换一个文件记录，如不设置则永远只记录一天的日志，需设置-->
+      <datePattern value="(yyyyMMdd)"/>
+      <!--是否追加到文件,默认为true，通常无需设置-->
+      <appendToFile value="true"/>
+      <!--变换的形式为日期，这种情况下每天只有一个日志-->
+      <!--此时MaxSizeRollBackups和maximumFileSize的节点设置没有意义-->
+      <!--<rollingStyle value="Date"/>-->
+      <!--变换的形式为日志大小-->
+      <!--这种情况下MaxSizeRollBackups和maximumFileSize的节点设置才有意义-->
+      <RollingStyle value="Size"/>
+      <!--每天记录的日志文件个数，与maximumFileSize配合使用-->
+      <MaxSizeRollBackups value="10"/>
+      <!--每个日志文件的最大大小-->
+      <!--可用的单位:KB|MB|GB-->
+      <!--不要使用小数,否则会一直写入当前日志-->
+      <maximumFileSize value="2MB"/>
+      <!--日志格式-->
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%date [%t]%-5p %c - %m%n"/>
+      </layout>
+      <!--
+        其中layout节点的配置说明：
+        %m(message):输出的日志消息；
+        %n(newline):换行；
+        %d(datetime):输出当前语句运行的时刻；
+        %r(runtime):输出程序从运行到执行到当前语句时消耗的毫秒数；
+        %t(threadid):当前语句所在的线程ID ；
+        %p(priority): 日志的当前日志级别；
+        %c(class):当前日志对象的名称；
+        %L：输出语句所在的行号；
+        %F：输出语句所在的文件名； 
+        %-10：表示最小长度为10，如果不够，则用空格填充；
+        -->
+    </appender>
+  </log4net>
+
+6、在使用log4net的地方加上
+		[assembly: log4net.Config.XmlConfigurator(ConfigFile = @"Extend/log4net/log4net.config", Watch = true)]
+		
+	这里是加在 LoggerHelper 类上面   因为都是其他地方调用它  其他地方是不使用log4net 只是调用 LoggerHelper 类的方法
+	 
+
+	 ConfigFile = @"Extend/log4net/log4net.config" 为log4net.config 的位置
+	 
+	 
+	 (我发现用代码
+	 SetConfig(System.AppDomain.CurrentDomain.BaseDirectory + "/bin/Extend/log4net/log4net.config");
+	 配置后 不加上面的
+	 [assembly: log4net.Config.XmlConfigurator(ConfigFile = @"Extend/log4net/log4net.config", Watch = true)]
+	 这段也可以用)
+
+log4net 的 web.config 具体配置项参考 http://www.cnblogs.com/zfanlong1314/p/3662679.html
