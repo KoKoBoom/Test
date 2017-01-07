@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{ED22B952-5FE0-4F0A-9F6B-4AF2702F2E75}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taki.Common", "..\Git.Project\CommonUtils\Taki.Common\Taki.Common.csproj", "{CAA687B6-B794-4EFE-9259-C2F90C9CA057}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taki.Logging", "..\Git.Project\CommonUtils\Taki.Logging\Taki.Logging.csproj", "{876861EA-A401-463C-859D-41085B582E21}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonUtils", "CommonUtils", "{ED22B952-5FE0-4F0A-9F6B-4AF2702F2E75}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinForm", "WinForm", "{8CC6E536-D206-412F-AA24-8CA8E10FF009}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWinform", "TestWinform\TestWinform.csproj", "{655B06E7-B573-4EF0-8DB8-D77D0CC59FFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taki.Common", "CommonUtils\Taki.Common\Taki.Common.csproj", "{CAA687B6-B794-4EFE-9259-C2F90C9CA057}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taki.Logging", "CommonUtils\Taki.Logging\Taki.Logging.csproj", "{876861EA-A401-463C-859D-41085B582E21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +19,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{655B06E7-B573-4EF0-8DB8-D77D0CC59FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{655B06E7-B573-4EF0-8DB8-D77D0CC59FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{655B06E7-B573-4EF0-8DB8-D77D0CC59FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{655B06E7-B573-4EF0-8DB8-D77D0CC59FFF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CAA687B6-B794-4EFE-9259-C2F90C9CA057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CAA687B6-B794-4EFE-9259-C2F90C9CA057}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAA687B6-B794-4EFE-9259-C2F90C9CA057}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,17 +31,13 @@ Global
 		{876861EA-A401-463C-859D-41085B582E21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{876861EA-A401-463C-859D-41085B582E21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{876861EA-A401-463C-859D-41085B582E21}.Release|Any CPU.Build.0 = Release|Any CPU
-		{655B06E7-B573-4EF0-8DB8-D77D0CC59FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{655B06E7-B573-4EF0-8DB8-D77D0CC59FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{655B06E7-B573-4EF0-8DB8-D77D0CC59FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{655B06E7-B573-4EF0-8DB8-D77D0CC59FFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{655B06E7-B573-4EF0-8DB8-D77D0CC59FFF} = {8CC6E536-D206-412F-AA24-8CA8E10FF009}
 		{CAA687B6-B794-4EFE-9259-C2F90C9CA057} = {ED22B952-5FE0-4F0A-9F6B-4AF2702F2E75}
 		{876861EA-A401-463C-859D-41085B582E21} = {ED22B952-5FE0-4F0A-9F6B-4AF2702F2E75}
-		{655B06E7-B573-4EF0-8DB8-D77D0CC59FFF} = {8CC6E536-D206-412F-AA24-8CA8E10FF009}
 	EndGlobalSection
 EndGlobal

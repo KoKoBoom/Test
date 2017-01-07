@@ -79,16 +79,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Git.Project\CommonUtils\Taki.Common\Taki.Common.csproj">
-      <Project>{caa687b6-b794-4efe-9259-c2f90c9ca057}</Project>
-      <Name>Taki.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Git.Project\CommonUtils\Taki.Logging\Taki.Logging.csproj">
-      <Project>{876861ea-a401-463c-859d-41085b582e21}</Project>
-      <Name>Taki.Logging</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
