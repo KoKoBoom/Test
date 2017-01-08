@@ -1,6 +1,6 @@
 ﻿参考于 http://aoxuis.me/post/2013-08-06-git-subtree
 
-1、创建 subtree
+1、创建 subtree 
 
 	git remote add -f <子仓库名> <子仓库的git地址>
 	git subtree add -prefix=<子目录名> <子仓库名> <分支> --squash
