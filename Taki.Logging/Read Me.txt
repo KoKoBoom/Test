@@ -2,7 +2,7 @@
 
 2017.01.07 更新说明
 
-1、将 LoggerFactory.CreateLog() 改为 LoggerFactory.Create() 
+1、将 LoggerFactory.CreateLog() 改为 LoggerFactory.Create() 。
    因为 LoggerFactory 本意就是 日志创建工厂，那么 Create 就已经能表达出创建 Logger 的意思了，CreateLog 语义上显得重复。（其实我只是想减少方法名长度，哈哈）
 
 2、对本类库做了大量的异常处理，LoggerFactory.Create() 在一般情况下不可能出现异常。
