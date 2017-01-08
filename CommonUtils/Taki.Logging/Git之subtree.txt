@@ -1,5 +1,4 @@
-﻿
-参考于 http://aoxuis.me/post/2013-08-06-git-subtree
+﻿参考于 http://aoxuis.me/post/2013-08-06-git-subtree
 
 1、创建 subtree
 
@@ -14,15 +13,15 @@
 	git subtree add --prefix=CommonUtils CommonUtils master --squash
 
 2、从远程仓库更新子目录
-	git fetch <远程仓库名> <分支>
-	git subtree pull --prefix=<子目录名> <远程分支> <分支> --squash
+	git fetch <子仓库名> <分支>
+	git subtree pull --prefix=<子目录名> <子仓库名> <分支> --squash
 
 	示例
 	git fetch CommonUtils master
 	git subtree pull --prefix=CommonUtils CommonUtils master --squash
 
 3、从子目录push到远程仓库
-	git subtree push --prefix=<子目录名> <远程分支名> 分支
+	git subtree push --prefix=<子目录名> <子仓库名> 分支
 
 	示例
 	git subtree push --prefix=CommonUtils CommonUtils master
@@ -31,10 +30,11 @@
 
 	冲突：如果你用本条代码 push 不了，那么你就要执行一次【代码2】 然后解决冲突，再重新提交。
 
+------------------------------------------------------------------------------------------------------------
 
 	命令示例
 	1、	git remote add -f CommonUtils https://github.com/KoKoBoom/CommonUtils.git
-		git subtree add -prefix=CommonUtils CommonUtils master --squash
+		git subtree add --prefix=Taki.CommonUtils CommonUtils master --squash
 	2、	git fetch CommonUtils master
-		git subtree pull --prefix=CommonUtils CommonUtils master --squash
-	3、	git subtree push --prefix=CommonUtils CommonUtils master
+		git subtree pull --prefix=Taki.CommonUtils CommonUtils master --squash
+	3、	git subtree push --prefix=Taki.CommonUtils CommonUtils master
