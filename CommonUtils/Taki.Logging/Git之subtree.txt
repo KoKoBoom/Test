@@ -32,7 +32,9 @@
 	冲突：如果你用本条代码 push 不了，那么你就要执行一次【代码2】 然后解决冲突，再重新提交。
 
 
-	多命令执行
-	1、git remote add -f CommonUtils https://github.com/KoKoBoom/CommonUtils.git && git subtree add -prefix=CommonUtils CommonUtils master --squash
-	2、git fetch CommonUtils master && git subtree pull --prefix=CommonUtils CommonUtils master --squash
-	3、git subtree push --prefix=CommonUtils CommonUtils master
+	命令示例
+	1、	git remote add -f CommonUtils https://github.com/KoKoBoom/CommonUtils.git
+		git subtree add -prefix=CommonUtils CommonUtils master --squash
+	2、	git fetch CommonUtils master
+		git subtree pull --prefix=CommonUtils CommonUtils master --squash
+	3、	git subtree push --prefix=CommonUtils CommonUtils master
