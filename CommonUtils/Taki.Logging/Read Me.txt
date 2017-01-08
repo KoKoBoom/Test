@@ -1,6 +1,6 @@
 ﻿Author: mister_zheng@sina.com
-1111222
-2017.01.07 更新说明 333
+
+2017.01.07 更新说明 1111222333
 
 1、将 LoggerFactory.CreateLog() 改为 LoggerFactory.Create() 
    因为 LoggerFactory 本意就是 日志创建工厂，那么 Create 就已经能表达出创建 Logger 的意思了，CreateLog 语义上显得重复。（其实我只是想减少方法名长度，哈哈）
