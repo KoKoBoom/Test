@@ -1,4 +1,10 @@
-﻿namespace Taki.Logging
+﻿/********************************************************************************
+** Auth：	Taki
+** Mail:	mister_zheng@sina.com
+** Date：	2017/1/11 10:19:10
+** Desc：	Log4net工厂类
+*********************************************************************************/
+namespace Taki.Logging
 {
     internal class Logger4Factory : ILoggerFactory
     {

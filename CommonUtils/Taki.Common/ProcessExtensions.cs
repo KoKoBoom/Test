@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Common
+namespace Taki.Common
 {
     /// <summary>
     /// 应用程序扩展

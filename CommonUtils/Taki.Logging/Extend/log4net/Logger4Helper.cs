@@ -1,4 +1,10 @@
-﻿using System;
+﻿/********************************************************************************
+** Auth：	Taki
+** Mail:	mister_zheng@sina.com
+** Date：	2017/1/11 10:19:10
+** Desc：	Log4net帮助类
+*********************************************************************************/
+using System;
 using System.Linq;
 
 //[assembly: log4net.Config.XmlConfigurator(ConfigFile = @"log4net.config", Watch = true)]
@@ -207,7 +213,6 @@ namespace Taki.Logging
         string Paramer(object[] args)
         {
             return (args != null && args.Count() > 0) ? args[0].ToString() : System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.ToString();
-            //return (args != null && args.Count() > 0) ? (Type)args[0] : System.Reflection.MethodBase.GetCurrentMethod().DeclaringType;
         }
     }
 }

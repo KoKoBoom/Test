@@ -23,8 +23,8 @@
 
 	1、将 Taki.Logging 工程添加到项目，然后在需要的地方添加项目的引用
 	2、调用：
-		LoggerFactory.CreateLog().Info("打印","XXXXXXXXXXXX");
-		LoggerFactory.CreateLog().Debug("错误","XXXXXXXXXXXXXXXXXXXXX");
+		LoggerFactory.Create()?.Info("打印","XXXXXXXXXXXX");
+		LoggerFactory.Create()?.Debug("错误","XXXXXXXXXXXXXXXXXXXXX");
 
 2016.07.06 添加简单说明
 
@@ -35,8 +35,8 @@
 			<add key="DefaultLogConfig" value="Taki.Logging.Logger4Factory"/>
 		</appSettings>
 	3、调用：
-		LoggerFactory.CreateLog().Info("打印","XXXXXXXXXXXX");
-		LoggerFactory.CreateLog().Debug("错误","XXXXXXXXXXXXXXXXXXXXX");
+		LoggerFactory.Create()?.Info("打印","XXXXXXXXXXXX");
+		LoggerFactory.Create()?.Debug("错误","XXXXXXXXXXXXXXXXXXXXX");
 
 二、详细说明：
 
@@ -73,8 +73,8 @@
 
 		如果log4net.config在另一个工程里面，则需要对log4net.config文件点右键》属性》复制到输出目录 始终复制。
 4、程序里面使用
-        LoggerFactory.CreateLog().Info("记录日志");
-		LoggerFactory.CreateLog().Error("记录错误");
+        LoggerFactory.Create()?.Info("记录日志");
+		LoggerFactory.Create()?.Error("记录错误");
 
 5.log4net 的配置项
 

@@ -11,6 +11,10 @@
     <AssemblyName>Taki.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,8 +34,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LitJson2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LitJson2.1.0.0\lib\LitJson2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NAudio, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.8.0\lib\net35\NAudio.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="OpenSmtp">
@@ -57,6 +69,7 @@
     <Compile Include="Extensions\Ordinary\Extensions.cs" />
     <Compile Include="Extensions\Linq\WhereIfExtension.cs" />
     <Compile Include="FileExtend.cs" />
+    <Compile Include="HttpHelper.cs" />
     <Compile Include="HttpProc.cs" />
     <Compile Include="MailSender.cs" />
     <Compile Include="ProcessExtensions.cs" />
@@ -71,6 +84,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Dlls\OpenSmtp.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Taki.Logging\Taki.Logging.csproj">
+      <Project>{876861ea-a401-463c-859d-41085b582e21}</Project>
+      <Name>Taki.Logging</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

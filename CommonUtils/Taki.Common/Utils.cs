@@ -61,5 +61,6 @@ namespace Taki.Common
             return Directory.GetParent(pathOrDirectory.TrimEnd(Path.DirectorySeparatorChar)).FullName;
         }
         #endregion
+
     }
 }

@@ -242,7 +242,11 @@ namespace Taki.Common
         }
         #endregion
 
-        #region 序列化 Newtonsoft 高级用法：http://www.cnblogs.com/yanweidie/p/4605212.html
+        #region 序列 反序列
+        /* Newtonsoft 高级用法：http://www.cnblogs.com/yanweidie/p/4605212.html */
+        #endregion
+
+        #region 序列化
         /// <summary>
         /// 将 obj 序列化为 JSON 字符串
         /// </summary>
@@ -254,6 +258,26 @@ namespace Taki.Common
             try
             {
                 return Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+            }
+            catch (Exception ex)
+            {
+                if (!isReturnDefaultValue)
+                    throw new Exception("序列化 Json 失败", ex);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 将 obj 序列化为 JSON 字符串
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="isReturnDefaultValue">是否返回默认值 ==》 【true: 返回默认值(null)】 【false: 抛出异常】<</param>
+        /// <returns></returns>
+        public static string ToLitJson(this object obj, bool isReturnDefaultValue = true)
+        {
+            try
+            {
+                return LitJson2.JsonMapper.ToJson(obj);
             }
             catch (Exception ex)
             {
@@ -277,6 +301,27 @@ namespace Taki.Common
             try
             {
                 return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
+            }
+            catch (Exception ex)
+            {
+                if (!isReturnDefaultValue)
+                    throw new Exception("反序列化 Json 失败", ex);
+            }
+            return default(T);
+        }
+
+        /// <summary>
+        /// 将 Json 反序列为 T
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="json"></param>
+        /// <param name="isReturnDefaultValue">是否返回默认值 ==》 【true: 返回默认值 一般情况为 null】 【false: 抛出异常】</param>
+        /// <returns></returns>
+        public static T ToLitObject<T>(this string json, bool isReturnDefaultValue = true)
+        {
+            try
+            {
+                return LitJson2.JsonMapper.ToObject<T>(json);
             }
             catch (Exception ex)
             {
@@ -417,6 +462,15 @@ namespace Taki.Common
         #endregion
 
         #region List扩展
+
+        public static bool IsNotNull<T>(this IList<T> s)
+        {
+            if (s != null && s.Count() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
 
         public static T Next<T>(this IList<T> list, int index)
         {
